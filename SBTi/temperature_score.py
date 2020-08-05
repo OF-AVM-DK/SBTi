@@ -495,9 +495,9 @@ class TemperatureScore(PortfolioAggregation):
                 for scope in scores[self.c.COLS.SCOPE_CATEGORY].unique():
                     number_top_contributors = min(10, len(aggregations[time_frame][scope]['all']['contributions']))
                     for contributor in range(number_top_contributors):
-                        company_name = aggregations[time_frame][scope]['all']['contributions'][contributor][
-                            self.c.COLS.COMPANY_NAME]
-                        company_mask = ((scores[self.c.COLS.COMPANY_NAME] == company_name) &
+                        company_id = aggregations[time_frame][scope]['all']['contributions'][contributor][
+                            self.c.COLS.COMPANY_ID]
+                        company_mask = ((scores[self.c.COLS.COMPANY_ID] == company_id) &
                                         (scores[self.c.COLS.SCOPE_CATEGORY] == scope) &
                                         (scores[self.c.COLS.TIME_FRAME] == time_frame))
                         scores.loc[company_mask, self.c.COLS.TEMPERATURE_SCORE] = \

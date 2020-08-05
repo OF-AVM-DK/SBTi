@@ -24,8 +24,7 @@ def get_company_data(data_providers: list, companies: list, config: Type[Columns
         company_data = pd.concat([company_data, data_provider.get_company_data(companies)])
         # TODO: Check the company data, make sure it has the correct format and that there is no XSS vulnerability
         companies = [company for company in companies
-                     if company[config.COMPANY_ID] not in company_data[config.COMPANY_ID].unique() and
-                        company[config.COMPANY_NAME] not in company_data[config.COMPANY_NAME].unique()]
+                     if company[config.COMPANY_ID] not in company_data[config.COMPANY_ID].unique()]
         if len(companies) == 0:
             break
 
@@ -47,8 +46,7 @@ def get_targets(data_providers: list, companies: list, config: Type[ColumnsConfi
     for data_provider in data_providers:
         company_data = pd.concat([company_data, data_provider.get_targets(companies)])
         companies = [company for company in companies
-                     if company[config.COMPANY_ID] not in company_data[config.COMPANY_ID].unique() and
-                        company[config.COMPANY_NAME] not in company_data[config.COMPANY_NAME].unique()]
+                     if company[config.COMPANY_ID] not in company_data[config.COMPANY_ID].unique()]
         if len(companies) == 0:
             break
 
